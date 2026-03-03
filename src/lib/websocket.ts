@@ -7,7 +7,7 @@ export function connectWebSocket(url: string = 'ws://127.0.0.1:9002') {
 
   socket.onopen = () => {
     console.log('WebSocket connected');
-    socket.send(JSON.stringify({ event: 'subscribe_market' }));
+    socket.send(JSON.stringify({ event: 'subscribe_aggregated_market' }));
     console.log('Sent subscription request');
   };
 
