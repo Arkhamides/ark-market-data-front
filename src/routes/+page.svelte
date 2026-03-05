@@ -2,7 +2,9 @@
   import "iconify-icon";
   import { onMount } from "svelte";
   import { connectWebSocket, subscribe } from "$lib/websocket";
+
   import OrderBookData from "$lib/components/order-book-data.svelte";
+  import MCPConnectionExample from "$lib/examples/MCPConnectionExample.svelte";
 
   let bids: { price: number; quantity: number }[] = [];
   let asks: { price: number; quantity: number }[] = [];
@@ -51,7 +53,9 @@
       </div>
       <nav class="nav-links">
         <a href="#docs">Documentation</a>
-        <a href="https://github.com/Arkhamides/mcp-market-data" target="_blank">GitHub</a>
+        <a href="https://github.com/Arkhamides/mcp-market-data" target="_blank"
+          >GitHub</a
+        >
       </nav>
     </div>
   </header>
@@ -64,7 +68,12 @@
         <h3 class="panel-title">Market Data</h3>
         <div class="stat-item">
           <span class="stat-label">BTC/USD</span>
-          <span class="stat-value">${btcPrice.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+          <span class="stat-value"
+            >${btcPrice.toLocaleString("en-US", {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })}</span
+          >
           <span class="stat-change positive">+{change24h}% (24h)</span>
         </div>
       </div>
@@ -109,10 +118,15 @@
     </aside>
   </div>
 
+  <MCPConnectionExample />
+
   <!-- Footer -->
   <footer class="terminal-footer">
     <div class="footer-content">
-      <p>&copy; 2025 MCP Market Data. Open source • AI-native • Real-time aggregation</p>
+      <p>
+        &copy; 2025 MCP Market Data. Open source • AI-native • Real-time
+        aggregation
+      </p>
       <div class="footer-links">
         <a href="#license">License</a>
         <a href="#privacy">Privacy</a>
@@ -124,7 +138,7 @@
 
 <style>
   :global(body) {
-    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-family: "JetBrains Mono", "Courier New", monospace;
     background-color: #0a0a0a;
     color: #e0e0e0;
   }
@@ -145,8 +159,11 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-image:
-      linear-gradient(90deg, rgba(100, 100, 100, 0.03) 1px, transparent 1px),
+    background-image: linear-gradient(
+        90deg,
+        rgba(100, 100, 100, 0.03) 1px,
+        transparent 1px
+      ),
       linear-gradient(rgba(100, 100, 100, 0.03) 1px, transparent 1px);
     background-size: 50px 50px;
     pointer-events: none;
