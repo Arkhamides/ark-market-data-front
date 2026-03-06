@@ -27,6 +27,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@modelcontextprotocol/sdk": "^1.27.1",
 		"@supabase/auth-helpers-sveltekit": "^0.13.0",
 		"@supabase/supabase-js": "^2.50.0",
 		"@sveltejs/adapter-vercel": "^5.1.0",
