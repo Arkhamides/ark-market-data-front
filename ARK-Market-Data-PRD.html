@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ARK Market Data — PRD</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0d0f14;
+      color: #c9d1d9;
+      padding: 60px 40px;
+      max-width: 860px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* Cover */
+    .cover {
+      text-align: center;
+      padding: 80px 0 60px;
+      border-bottom: 1px solid #21262d;
+      margin-bottom: 60px;
+    }
+    .cover .label {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #6e7681;
+      margin-bottom: 20px;
+    }
+    .cover h1 {
+      font-size: 42px;
+      font-weight: 700;
+      color: #f0f6fc;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+    }
+    .cover h1 span { color: #58a6ff; }
+    .cover .subtitle {
+      font-size: 16px;
+      color: #8b949e;
+      margin-bottom: 32px;
+    }
+    .cover .meta {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      font-size: 13px;
+      color: #6e7681;
+    }
+    .cover .meta strong { color: #8b949e; }
+
+    /* Sections */
+    h2 {
+      font-size: 22px;
+      font-weight: 600;
+      color: #f0f6fc;
+      margin: 48px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #21262d;
+    }
+    h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: #58a6ff;
+      margin: 28px 0 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 12px;
+    }
+    p { margin-bottom: 12px; color: #c9d1d9; font-size: 14.5px; }
+
+    /* Vision block */
+    .vision-block {
+      background: #161b22;
+      border: 1px solid #21262d;
+      border-left: 3px solid #58a6ff;
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 16px 0 24px;
+      font-size: 15px;
+      color: #c9d1d9;
+      line-height: 1.8;
+    }
+
+    /* Core loop */
+    .loop {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin: 16px 0 24px;
+    }
+    .loop-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid #161b22;
+    }
+    .loop-item:last-child { border-bottom: none; }
+    .loop-num {
+      background: #1f2937;
+      color: #58a6ff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 500;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .loop-content strong { color: #f0f6fc; font-size: 14.5px; display: block; margin-bottom: 2px; }
+    .loop-content span { font-size: 13px; color: #8b949e; }
+
+    /* Phase cards */
+    .phases { display: flex; flex-direction: column; gap: 16px; margin-top: 16px; }
+    .phase-card {
+      background: #161b22;
+      border: 1px solid #21262d;
+      border-radius: 8px;
+      padding: 20px 24px;
+    }
+    .phase-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .phase-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      padding: 3px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+    }
+    .phase-1 .phase-badge { background: #0d419d; color: #58a6ff; }
+    .phase-2 .phase-badge { background: #1a2e1a; color: #3fb950; }
+    .phase-3 .phase-badge { background: #2d1f00; color: #e3b341; }
+    .phase-4 .phase-badge { background: #2a1a2e; color: #bc8cff; }
+    .phase-title { font-weight: 600; color: #f0f6fc; font-size: 15px; }
+    .feature-list { list-style: none; }
+    .feature-list li {
+      font-size: 13.5px;
+      color: #c9d1d9;
+      padding: 5px 0;
+      padding-left: 16px;
+      position: relative;
+    }
+    .feature-list li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: #30363d;
+    }
+
+    /* Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 24px;
+      font-size: 13.5px;
+    }
+    thead th {
+      background: #161b22;
+      color: #8b949e;
+      font-weight: 500;
+      text-align: left;
+      padding: 10px 14px;
+      border: 1px solid #21262d;
+      font-size: 12px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    tbody td {
+      padding: 10px 14px;
+      border: 1px solid #21262d;
+      color: #c9d1d9;
+      vertical-align: top;
+    }
+    tbody tr:nth-child(even) td { background: #0d1117; }
+    .model-name { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #58a6ff; }
+    .tag {
+      display: inline-block;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 12px;
+      background: #1f2937;
+      color: #8b949e;
+    }
+    .tag.rec { background: #0d419d; color: #58a6ff; }
+
+    /* Tech stack */
+    .stack-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 16px 0 24px;
+    }
+    .stack-item {
+      background: #161b22;
+      border: 1px solid #21262d;
+      border-radius: 6px;
+      padding: 12px 16px;
+    }
+    .stack-layer { font-size: 11px; color: #6e7681; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .stack-value { font-size: 13.5px; color: #c9d1d9; font-family: 'JetBrains Mono', monospace; }
+
+    /* Constraints */
+    .constraint-list { list-style: none; margin: 16px 0 24px; }
+    .constraint-list li {
+      font-size: 13.5px;
+      color: #c9d1d9;
+      padding: 8px 0 8px 16px;
+      border-bottom: 1px solid #161b22;
+      position: relative;
+    }
+    .constraint-list li::before { content: '·'; position: absolute; left: 4px; color: #58a6ff; font-size: 18px; line-height: 1.3; }
+    .constraint-list li strong { color: #f0f6fc; }
+
+    /* Out of scope */
+    .oos-list { list-style: none; margin: 16px 0; }
+    .oos-list li {
+      font-size: 13.5px;
+      color: #8b949e;
+      padding: 6px 0 6px 20px;
+      position: relative;
+    }
+    .oos-list li::before { content: '✕'; position: absolute; left: 0; color: #f85149; font-size: 11px; top: 9px; }
+
+    @media print {
+      body { background: white; color: #1a1a1a; padding: 40px; }
+      .cover h1 { color: #1a1a1a; }
+      .cover h1 span { color: #0969da; }
+      h2 { color: #1a1a1a; border-color: #e1e4e8; }
+      h3 { color: #0969da; }
+      .vision-block { background: #f6f8fa; border-color: #e1e4e8; color: #1a1a1a; }
+      .phase-card, .stack-item { background: #f6f8fa; border-color: #e1e4e8; }
+      thead th { background: #f6f8fa; color: #57606a; }
+      tbody tr:nth-child(even) td { background: #fafafa; }
+      .model-name { color: #0969da; }
+      p, .loop-content span, .feature-list li, .constraint-list li, .oos-list li { color: #1a1a1a; }
+      .loop-content strong, .phase-title, .cover .subtitle { color: #1a1a1a; }
+      .cover .meta strong { color: #57606a; }
+      .cover .meta, .cover .label { color: #57606a; }
+      .stack-value { color: #1a1a1a; }
+      .loop-num { background: #e1e4e8; }
+      .tag { background: #e1e4e8; color: #57606a; }
+      .tag.rec { background: #ddf4ff; color: #0969da; }
+      table, thead th, tbody td { border-color: #e1e4e8; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cover">
+    <div class="label">Product Requirements Document</div>
+    <h1>ARK <span>Market Data</span></h1>
+    <div class="subtitle">HFT-grade data environment for AI-assisted algorithmic trading</div>
+    <div class="meta">
+      <div><strong>Version</strong> 0.1</div>
+      <div><strong>Date</strong> March 2026</div>
+      <div><strong>Status</strong> Early Stage</div>
+    </div>
+  </div>
+
+  <h2>Product Vision</h2>
+  <div class="vision-block">
+    A personal algorithmic trading simulation environment where you use AI to brainstorm, configure, and observe trading strategies against live market data — before risking real capital.
+  </div>
+
+  <h2>Core Loop</h2>
+  <div class="loop">
+    <div class="loop-item">
+      <div class="loop-num">1</div>
+      <div class="loop-content">
+        <strong>Observe</strong>
+        <span>Live aggregated order book and market data from Binance, Kraken, and Coinbase</span>
+      </div>
+    </div>
+    <div class="loop-item">
+      <div class="loop-num">2</div>
+      <div class="loop-content">
+        <strong>Brainstorm</strong>
+        <span>Chat with AI (Claude via MCP) about strategy ideas and current market conditions</span>
+      </div>
+    </div>
+    <div class="loop-item">
+      <div class="loop-num">3</div>
+      <div class="loop-content">
+        <strong>Configure</strong>
+        <span>Set alerts and strategy parameters through the AI interface</span>
+      </div>
+    </div>
+    <div class="loop-item">
+      <div class="loop-num">4</div>
+      <div class="loop-content">
+        <strong>Simulate</strong>
+        <span>Paper trade in real-time against live data — no capital at risk</span>
+      </div>
+    </div>
+    <div class="loop-item">
+      <div class="loop-num">5</div>
+      <div class="loop-content">
+        <strong>Evaluate</strong>
+        <span>Review P&amp;L simulation, slippage estimates, fill stats, and strategy performance</span>
+      </div>
+    </div>
+  </div>
+
+  <h2>Feature Roadmap</h2>
+
+  <div class="phases">
+
+    <div class="phase-card phase-1">
+      <div class="phase-header">
+        <span class="phase-badge">PHASE 1</span>
+        <span class="phase-title">Core Simulation</span>
+      </div>
+      <ul class="feature-list">
+        <li>P&amp;L simulation engine — paper trading against live data</li>
+        <li>Slippage estimation derived from live order book depth</li>
+        <li>Strategy configuration UI — entry/exit rules, position sizing</li>
+        <li>Stats panel — fill history, cumulative P&amp;L curve, win rate</li>
+      </ul>
+    </div>
+
+    <div class="phase-card phase-2">
+      <div class="phase-header">
+        <span class="phase-badge">PHASE 2</span>
+        <span class="phase-title">Richer Market Data</span>
+      </div>
+      <ul class="feature-list">
+        <li>Candlestick / price charts</li>
+        <li>Alert expansion: order book imbalance, spread change, arbitrage opportunities</li>
+        <li>Order book depth heatmap (liquidity visualization)</li>
+        <li>Trade flow visualization</li>
+      </ul>
+    </div>
+
+    <div class="phase-card phase-3">
+      <div class="phase-header">
+        <span class="phase-badge">PHASE 3</span>
+        <span class="phase-title">Multi-Instrument</span>
+      </div>
+      <ul class="feature-list">
+        <li>Multi-instrument support (multiple pairs simultaneously)</li>
+        <li>Synthetic / spread pairs (e.g. BTC-ETH ratio as a derived series)</li>
+        <li>Pairs trading and statistical arbitrage strategy support</li>
+      </ul>
+    </div>
+
+    <div class="phase-card phase-4">
+      <div class="phase-header">
+        <span class="phase-badge">PHASE 4</span>
+        <span class="phase-title">AI Depth</span>
+      </div>
+      <ul class="feature-list">
+        <li>Model routing — Haiku for low-latency alerts, Sonnet for strategy reasoning</li>
+        <li>AI-generated performance commentary and post-trade analysis</li>
+        <li>AI-suggested parameter tuning based on simulation results</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <h2>AI Model Strategy</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Model</th>
+        <th>Speed</th>
+        <th>Intelligence</th>
+        <th>Use Case</th>
+        <th>Recommended</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="model-name">claude-haiku-4-5</span></td>
+        <td>Fastest</td>
+        <td>Good</td>
+        <td>Alert evaluation, real-time triggers</td>
+        <td><span class="tag">Alerts</span></td>
+      </tr>
+      <tr>
+        <td><span class="model-name">claude-sonnet-4-6</span></td>
+        <td>Balanced</td>
+        <td>Very strong</td>
+        <td>Strategy chat, market reasoning, MCP interactions</td>
+        <td><span class="tag rec">Primary</span></td>
+      </tr>
+      <tr>
+        <td><span class="model-name">claude-opus-4-6</span></td>
+        <td>Slowest</td>
+        <td>Best</td>
+        <td>Deep strategy design, complex multi-step analysis</td>
+        <td><span class="tag">On demand</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Tech Stack</h2>
+  <div class="stack-grid">
+    <div class="stack-item">
+      <div class="stack-layer">Frontend</div>
+      <div class="stack-value">SvelteKit 2 + TypeScript</div>
+    </div>
+    <div class="stack-item">
+      <div class="stack-layer">Styling</div>
+      <div class="stack-value">Tailwind CSS + Skeleton Labs</div>
+    </div>
+    <div class="stack-item">
+      <div class="stack-layer">Real-time Data</div>
+      <div class="stack-value">WebSocket → local backend :9002</div>
+    </div>
+    <div class="stack-item">
+      <div class="stack-layer">AI Integration</div>
+      <div class="stack-value">Claude via MCP (live data access)</div>
+    </div>
+    <div class="stack-item">
+      <div class="stack-layer">Auth / Database</div>
+      <div class="stack-value">Supabase</div>
+    </div>
+    <div class="stack-item">
+      <div class="stack-layer">Deployment</div>
+      <div class="stack-value">Vercel</div>
+    </div>
+  </div>
+
+  <h2>Current State</h2>
+  <ul class="constraint-list">
+    <li><strong>Live order book</strong> — aggregated bids/asks from Binance, Kraken, Coinbase</li>
+    <li><strong>AI chat via MCP</strong> — Claude with live market data access, functional</li>
+    <li><strong>Price alerts</strong> — basic price-level alerting in place</li>
+    <li><strong>Single instrument</strong> — one trading pair at a time</li>
+    <li><strong>Auth</strong> — Supabase sign up/in/out wired</li>
+  </ul>
+
+  <h2>Out of Scope (Current Phase)</h2>
+  <ul class="oos-list">
+    <li>Live trade execution against real exchanges</li>
+    <li>Multi-user / team features</li>
+    <li>Backtesting on historical data (focus is live paper trading)</li>
+    <li>Mobile app</li>
+  </ul>
+
+</body>
+</html>
