@@ -2,7 +2,7 @@
 let socket: WebSocket;
 let listeners: ((data: any) => void)[] = [];
 
-export function connectWebSocket(url: string = 'ws://127.0.0.1:9002') {
+export function connectWebSocket(url: string = 'ws://2.tcp.eu.ngrok.io:16619') {
   socket = new WebSocket(url);
 
   socket.onopen = () => {
