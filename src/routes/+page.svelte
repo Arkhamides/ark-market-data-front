@@ -11,11 +11,11 @@
   let bids: { price: number; quantity: number }[] = [];
   let asks: { price: number; quantity: number }[] = [];
   let btcPrice = 0;
+  let spread = 0;
   const change24h = 1.0; // TODO: Replace with actual 24h change data
 
   // Mock stats data
   const mockStats = {
-    spread: 0.032,
     volume24h: 847.3,
     status: "Connected",
   };
@@ -33,6 +33,7 @@
           const topBid = data.bids[0].price;
           const topAsk = data.asks[0].price;
           btcPrice = (topBid + topAsk) / 2;
+          spread = (topAsk - topBid) / btcPrice * 100;
         }
       }
     });
@@ -101,7 +102,7 @@
         <h3 class="panel-title">Market Metrics</h3>
         <div class="stat-item">
           <span class="stat-label">Spread</span>
-          <span class="stat-value">{mockStats.spread}%</span>
+          <span class="stat-value">{spread.toFixed(4)}%</span>
         </div>
         <div class="stat-item">
           <span class="stat-label">24h Volume</span>
@@ -314,9 +315,6 @@
     color: #22c55e;
   }
 
-  .stat-change.negative {
-    color: #ef4444;
-  }
 
   .status-indicator {
     display: flex;

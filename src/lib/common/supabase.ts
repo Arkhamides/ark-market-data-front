@@ -1,8 +1,9 @@
 // lib/supabase.ts
 import { createClient } from '@supabase/supabase-js';
+import { env } from '$env/dynamic/public';
 
-const supabaseUrl = process.env.PUBLIC_SUPABASE_HOST;
-const supabaseAnonKey = process.env.PUBLIC_SUPABASE_ANON_KEY;
+const supabaseUrl = env.PUBLIC_SUPABASE_HOST;
+const supabaseAnonKey = env.PUBLIC_SUPABASE_ANON_KEY;
 
 export const supabase = createClient(supabaseUrl!, supabaseAnonKey!);
 

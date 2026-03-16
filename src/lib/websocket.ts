@@ -1,8 +1,10 @@
 // src/lib/websocket.ts
+import { env } from '$env/dynamic/public';
+
 let socket: WebSocket;
 let listeners: ((data: any) => void)[] = [];
 
-export function connectWebSocket(url: string = 'ws://2.tcp.eu.ngrok.io:16619') {
+export function connectWebSocket(url: string = env.PUBLIC_WS_URL ?? 'ws://127.0.0.1:9002') {
   socket = new WebSocket(url);
 
   socket.onopen = () => {
