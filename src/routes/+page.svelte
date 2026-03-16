@@ -5,6 +5,8 @@
 
   import OrderBookData from "$lib/components/order-book-data.svelte";
   import MCPConnectionExample from "$lib/examples/MCPConnectionExample.svelte";
+  import ChatBot from "$lib/components/ChatBot.svelte";
+  import AlertsPanel from "$lib/components/AlertsPanel.svelte";
 
   let bids: { price: number; quantity: number }[] = [];
   let asks: { price: number; quantity: number }[] = [];
@@ -15,7 +17,7 @@
   const mockStats = {
     spread: 0.032,
     volume24h: 847.3,
-    status: "Connected"
+    status: "Connected",
   };
 
   onMount(() => {
@@ -87,9 +89,10 @@
       </div>
     </aside>
 
-    <!-- Center: Order Book -->
+    <!-- Center: Order Book & Chatbot -->
     <main class="order-book-container">
       <OrderBookData {bids} {asks} />
+      <ChatBot />
     </main>
 
     <!-- Right Panel: Stats -->
@@ -115,10 +118,10 @@
           <li>✓ CoinMarketCap</li>
         </ul>
       </div>
+
+      <AlertsPanel />
     </aside>
   </div>
-
-  <MCPConnectionExample />
 
   <!-- Footer -->
   <footer class="terminal-footer">

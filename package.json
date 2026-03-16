@@ -27,6 +27,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@anthropic-ai/sdk": "^0.78.0",
 		"@modelcontextprotocol/sdk": "^1.27.1",
 		"@supabase/auth-helpers-sveltekit": "^0.13.0",
 		"@supabase/supabase-js": "^2.50.0",
@@ -38,7 +39,7 @@
 		"iconify": "^1.4.0",
 		"iconify-icon": "^2.0.0",
 		"lucide-svelte": "^0.522.0",
-		"marked": "^16.0.0",
+		"marked": "^16.4.2",
 		"svelte-i18n": "^4.0.0"
 	}
 }
