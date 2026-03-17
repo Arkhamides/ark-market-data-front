@@ -4,7 +4,7 @@ import { env } from '$env/dynamic/public';
 let socket: WebSocket;
 let listeners: ((data: any) => void)[] = [];
 
-export function connectWebSocket(url: string = env.PUBLIC_WS_URL ?? 'ws://127.0.0.1:9002') {
+export function connectWebSocket(url: string = env.PUBLIC_WS_URL ?? 'ws://127.0.0.1:3001/websocket') {
   socket = new WebSocket(url);
 
   socket.onopen = () => {
