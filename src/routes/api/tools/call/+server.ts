@@ -1,16 +1,16 @@
-import { getMcpClient } from "$lib/common/server/mcp";
+import { getMcpClient, getOrCreateSessionId } from "$lib/common/server/mcp";
 import { json } from "@sveltejs/kit";
+import type { RequestEvent } from "@sveltejs/kit";
 
-export async function POST({ request }) {
+export async function POST({ request, cookies }: RequestEvent) {
   try {
     const { toolName, arguments: toolArgs } = await request.json();
-
-    const client = await getMcpClient();
+    const sessionId = getOrCreateSessionId(cookies);
+    const client = await getMcpClient(sessionId);
     const result = await client.callTool({
       name: toolName,
       arguments: toolArgs || {},
     });
-
     return json(result);
   } catch (error) {
     return json(

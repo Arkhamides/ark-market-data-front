@@ -1,5 +1,6 @@
-import { getMcpClient } from "$lib/common/server/mcp";
+import { getMcpClient, getOrCreateSessionId } from "$lib/common/server/mcp";
 import { json } from "@sveltejs/kit";
+import type { RequestEvent } from "@sveltejs/kit";
 import Anthropic from "@anthropic-ai/sdk";
 import { env } from "$env/dynamic/private";
 
@@ -9,7 +10,7 @@ interface ToolCall {
   result: unknown;
 }
 
-export async function POST({ request }) {
+export async function POST({ request, cookies }: RequestEvent) {
   const anthropic = new Anthropic({
     apiKey: env.PRIVATE_ANTHROPIC_API_KEY,
   });
@@ -17,7 +18,8 @@ export async function POST({ request }) {
     const { messages } = await request.json();
 
     // Fetch MCP tools and convert to Anthropic format
-    const client = await getMcpClient();
+    const sessionId = getOrCreateSessionId(cookies);
+    const client = await getMcpClient(sessionId);
     const { tools: mcpTools } = await client.listTools();
 
     const anthropicTools = mcpTools.map((tool) => ({
