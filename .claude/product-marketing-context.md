@@ -1,136 +1,208 @@
 # Product Marketing Context: MCP Market Data
 
-*Last updated: 2026-03-02*
+*Last updated: 2026-03-22*
 
 ## Product Overview
 
-**One-liner:** HFT-grade data for AI traders — real-time crypto market data via MCP.
+**One-liner:** AI-native backtesting and live validation for crypto strategies, via MCP.
 
-**What it does:** MCP Market Data is an open-source MCP server that aggregates real-time cryptocurrency market data from multiple exchanges (Binance, Kraken, Coinmarketcap, etc.) and makes it natively accessible to AI agents and assistants. Built with a C++ backend optimized for low-latency HFT-grade performance.
+**Core promise:** Describe a strategy in chat, get instant backtests on historical data and live forward tests with HFT-grade feeds.
 
-**Product category:** Developer tool / AI infrastructure
+**What it does:** MCP Market Data is an MCP server that aggregates real-time cryptocurrency market data from multiple exchanges (Binance, Kraken, Coinmarketcap, etc.) and enables AI agents to run backtests, forward tests, and live market analysis natively. Built with a C++ backend optimized for low-latency HFT-grade performance. The full loop: natural language strategy → code/rules generation → backtest → metrics (P&L, drawdown, win rate).
 
-**Product type:** Open-source MCP server
+**Product category:** AI infrastructure / quant tooling
 
-**Business model:** Open-source (potential future monetization via proprietary exchange, but not the current focus)
+**Product type:** MCP server + backtesting/validation layer (open-source core, commercial tiers)
+
+**Business model:** Freemium SaaS — free tier for validation, paid tiers for capacity (history depth, pairs, throughput, concurrent live tests)
+
+---
 
 ## Target Audience
 
-**Target users:**
-- AI developers building crypto applications
-- Crypto traders integrating AI into their workflows
-- Algorithmic traders building automated systems
-- Developers building AI trading bots
+**Primary users:**
+- Algo traders and quant developers building crypto strategies
+- AI/LLM developers integrating market data into agents
+- Independent traders who want to test strategies without wiring infra
 
-**Decision-makers:** Individual developers, small trading teams, AI engineers
+**Secondary users:**
+- Small trading desks and funds needing validation tooling
+- Developers in communities: r/algotrading, r/QuantFinance, quant/AI discords
 
-**Primary use case:** Integrating real-time, aggregated crypto market data into AI agents without custom API integration overhead
+**Decision-makers:** Individual developers, indie traders, small trading teams
+
+**Primary use case:** Describe a strategy in natural language → AI generates and runs a backtest → surfaces actionable metrics — without touching data infrastructure
 
 **Jobs to be done:**
-- Get aggregated data across multiple exchanges in real-time
-- Eliminate friction when connecting crypto data to AI models
-- Build autonomous trading agents that can access live market data
-- Create AI-powered market analysis and research tools
+- Test strategies on real historical data without building data + simulation infra
+- Validate strategies live before committing capital
+- Connect AI agents to real-time multi-exchange market data
+- Eliminate the "wiring" problem between LLMs and market data
 
 **Use cases:**
-- Trading agents that monitor prices, send alerts, and execute trades
-- Crypto research assistants powered by Claude or other MCP-compatible AI
-- Real-time market opportunity notification agents
-- Algorithmic trading bots with AI decision-making
+- "Write a BTC momentum strategy and backtest it on the last 6 months" — in chat
+- Live forward-test a strategy on paper before deploying to a real bot
+- Trading agents that monitor prices, alert on signals, and surface metrics
+- AI-powered market research and backtesting for quant developers
+
+---
 
 ## Problems & Pain Points
 
 **Core problems:**
-1. Aggregating data across multiple exchanges is complex and high-latency
-2. Integrating crypto data into AI applications requires custom work (API keys, authentication, wrappers)
+1. Wiring data feeds + simulation infrastructure is the most tedious part of algo trading — most time is spent on plumbing, not strategy
+2. No plug-and-play way to go from "strategy idea" → backtest → live test, especially for AI-assisted workflows
+3. Integrating crypto data into AI applications requires custom work (API keys, auth, wrappers)
+4. Aggregating data across exchanges is complex, high-latency, and fragile
 
 **Why alternatives fall short:**
-- Direct exchange APIs: Requires managing multiple integrations, authentication, rate limits
-- Traditional crypto data providers: Not AI-native, require custom connectors
-- Building custom integrations: Time-consuming, maintenance overhead
+- Direct exchange APIs: Multiple integrations, auth overhead, rate limits, no unified backtesting
+- Traditional quant platforms (QuantConnect, Backtrader): Not AI-native, no MCP, heavy setup
+- Building custom infra: Weeks of engineering before testing a single strategy
+- Existing MCP servers: Market data only, no backtest/sim layer
 
 **What it costs them:**
-- Development time building integrations
-- Latency issues affecting real-time trading decisions
-- Missing data from multiple sources
-- Complexity in deployment and maintenance
+- Weeks of engineering before testing a single strategy
+- Missing alpha from strategies they never validated
+- Latency and reliability issues in live data
+- Complexity that kills momentum
+
+---
 
 ## Differentiation
 
 **Key differentiators:**
-- **Multi-exchange aggregation:** Real-time data from Binance, Kraken, Coinmarketcap, and more
-- **HFT-grade backend:** C++ implementation optimized for low-latency performance
-- **AI-native protocol:** MCP means zero-friction integration with Claude and any MCP-compatible AI
-- **Open-source:** No vendor lock-in, transparent, community-driven
+- **Full AI-native loop:** Natural language strategy spec → code/rules generation → backtest → live sim — no manual plumbing
+- **HFT-grade data layer:** C++ backend, multi-exchange aggregation, real-time and historical
+- **MCP protocol:** Works natively with Claude and any MCP-compatible AI — zero custom connectors
+- **No execution risk at entry:** Start with paper trading / live sim; users plug in their own broker when ready
+- **Open-source core:** Transparent, community-driven, no lock-in
 
 **How we do it differently:**
-- Other crypto data providers aren't designed for AI integration
-- Other MCP servers don't offer multi-exchange crypto data aggregation
-- Building custom integrations requires engineering overhead; MCP is plug-and-play
+- Other quant platforms require you to bring your own data and write simulation code
+- Other crypto data providers aren't AI-native and have no strategy loop
+- Other MCP servers give you data but not the backtesting orchestration layer
 
-**Why customers choose us:**
-- Fastest path from "I want crypto data in my AI" to having it working
-- HFT-grade performance you'd normally need to build yourself
-- Works across any MCP-compatible AI (Claude, others), not locked to one platform
-- Open-source means transparency and community contributions
+**Why users choose us:**
+- Fastest path from "I have a strategy idea" to "I have backtest metrics"
+- HFT-grade performance without building it yourself
+- Works with Claude (and any MCP AI) natively
+- Paper trading/sim first — no capital at risk to start
+
+---
+
+## Pricing Strategy
+
+**Tier 0 — Free:**
+- Limited pairs, rate-limited real-time data, shallow historical depth
+- No long-term storage of backtest runs
+- Goal: get users building and giving feedback
+
+**Tier 1 — Indie / Dev (29–99 €/mo):**
+- More pairs, deeper history, higher throughput, more concurrent live tests
+- Suitable for solo algo traders and AI developers
+
+**Tier 2 — Pro / Desk (higher flat + usage-based):**
+- Unlimited pairs, deep history, priority support, private instances
+- Scales with API calls / active strategies / live streams
+
+**Optional:** "Backtest credits" pay-per-use for users who don't want a subscription yet
+
+---
+
+## Go-to-Market Channels
+
+**Communities:**
+- r/algotrading, r/QuantFinance
+- Quant/AI discords, X (trading/AI threads), Claude/MCP communities
+
+**Key offer:** "I'll wire one of your existing strategies to MCP Market Data for free; you keep the strategy, I keep the feedback."
+
+**Content:**
+- Short videos: "I asked a chatbot to invent a BTC strategy and backtested it in 30 seconds"
+- Public demo flows: write strategy → backtest → live sim, shown in communities
+
+**Success signals (weeks 4–8):**
+- 5–10 users who connect, run multiple backtests, and return within a week
+- 2–3 convert to paid ("I need more history / pairs / capacity")
+
+---
 
 ## Switching Dynamics
 
-**Push:** Frustration with slow integrations, multiple API keys, latency issues, missing exchange coverage
+**Push:** Frustration with slow integrations, multiple API keys, latency, weeks of setup before first backtest
 
-**Pull:** One-line MCP connection, HFT-grade speed, multi-exchange data, works with Claude natively
+**Pull:** One-line MCP connection, natural language → instant backtest, HFT-grade speed, paper trading to start
 
-**Habit:** Developers are used to writing custom integrations or using separate APIs
+**Habit:** Developers are used to writing custom integrations or using heavy quant platforms
 
-**Anxiety:** "Will this be reliable enough for real trading?" "Will it work with my AI model?"
+**Anxiety:** "Will this be reliable enough for real trading?" "Is the historical data accurate?" "What if I need execution later?"
+
+---
 
 ## Customer Language
 
 **How they describe the problem:**
-- "I need data from multiple exchanges but it's a pain to integrate"
-- "I want to build a trading agent but connecting to market data is the hardest part"
-- "Setting up all these APIs is slower than actually building the AI logic"
+- "I want to test a strategy but wiring the data and simulation takes forever"
+- "I have an idea, I just want to see if it works on historical data"
+- "Setting up the infra is slower than actually thinking about the strategy"
 
 **How they describe us:**
+- "I described a strategy and it ran a backtest — that's insane"
 - "Finally, real-time crypto data that just works with Claude"
-- "This is the fastest way to get my trading bot live"
 - "HFT-grade data without building infrastructure"
 
 **Words to use:**
-- AI-native, integration, real-time, aggregation, low-latency, open-source, MCP, trading agents
+- AI-native, backtest, live validation, strategy, plug-and-play, real-time, MCP, HFT-grade, paper trading
 
 **Words to avoid:**
-- Complex, enterprise, proprietary, centralized (when it's not the value prop)
+- Complex, enterprise, proprietary, centralized (when not the value prop), "just another data provider"
+
+---
 
 ## Brand Voice
 
-**Tone:** Technical/engineer-focused, casual, friendly, simple (context-dependent)
+**Tone:** Technical/engineer-focused, direct, no hype — let the demo do the work
 
-**Style:** Direct and practical; explain things clearly without overcomplicating; friendly when appropriate
+**Style:** Show, don't tell. Lead with working demos and concrete outputs (backtest metrics, P&L curves) before explaining how it works.
 
-**Personality:** Performant, transparent, builder-focused, accessible
+**Personality:** Builder-focused, transparent, performance-obsessed, accessible to solo devs
+
+---
 
 ## Proof Points
 
-**Metrics:** (Coming as project matures)
+**Metrics:** (Building as product matures)
 - Latency benchmarks vs. direct APIs
-- Exchange coverage / data accuracy
-- Uptime / reliability stats
+- Historical data accuracy and depth
+- Exchange coverage
+- Backtest execution time
 
-**Customers/Testimonials:** (No early users yet — focus on validating idea first)
+**Customers/Testimonials:** (Collecting via early outreach — 10–20 algo/AI trader interviews in progress)
 
 **Value themes:**
 | Theme | Proof Point |
 |-------|------------|
+| Instant backtesting | Natural language → metrics in seconds |
 | Low-latency performance | C++ HFT-grade backend |
 | Multi-exchange coverage | Binance, Kraken, Coinmarketcap, etc. |
-| AI-native integration | MCP protocol, works across any MCP-compatible AI |
-| Zero friction | One-line connection, no custom integrations needed |
+| AI-native integration | MCP protocol, works with Claude natively |
+| Zero infra overhead | Plug-and-play, no wiring required |
+| Safe to start | Paper trading / live sim before real execution |
+
+---
 
 ## Goals
 
-**Primary goal:** Validate the idea with early users (AI developers and traders building crypto AI applications)
+**Primary goal:** Validate product-market fit with algo/AI traders — confirm they'll pay for plug-and-play strategy validation
 
-**Key conversion action:** Get developers to connect and use MCP Market Data in a real project
+**Key conversion action:** User connects, runs a backtest on a real strategy, returns within a week
 
-**Current stage:** Open-source launch phase, validating product-market fit
+**Current stage:** Idea validation + smallest monetizable slice (weeks 2–4)
+
+**Iteration path:**
+1. Validate: interviews + demo flows with 10–20 users
+2. Build core slice: MCP data + historical layer + backtest orchestration
+3. Launch free tier, collect feedback, identify paid conversion triggers
+4. Add execution integrations (Freqtrade, CCXT) as BYO-keys, BYO-execution
+5. Introduce team plans and "strategy validation as a service" for small funds

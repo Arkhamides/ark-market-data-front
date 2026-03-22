@@ -204,8 +204,8 @@
       <div class="chatbot-header">
         <div class="header-content">
           <div>
-            <h2>MCP Assistant</h2>
-            <p class="subtitle">Chat with Claude about available tools</p>
+            <h2>Trading Assistant</h2>
+            <p class="subtitle">Chat with your AI assistant about available tools</p>
           </div>
           <button
             class="load-tools-btn"
@@ -261,7 +261,7 @@
           bind:value={input}
           on:keydown={handleKeyDown}
           disabled={loading}
-          placeholder="Ask Claude a question..."
+          placeholder="Ask a question..."
           rows="3"
         />
         <button on:click={sendMessage} disabled={loading || !input.trim()}>
