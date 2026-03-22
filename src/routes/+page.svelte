@@ -4,7 +4,6 @@
   import { connectWebSocket, subscribe } from "$lib/websocket";
 
   import OrderBookData from "$lib/components/order-book-data.svelte";
-  import MCPConnectionExample from "$lib/examples/MCPConnectionExample.svelte";
   import ChatBot from "$lib/components/ChatBot.svelte";
   import AlertsPanel from "$lib/components/AlertsPanel.svelte";
 
