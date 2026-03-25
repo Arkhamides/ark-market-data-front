@@ -50,7 +50,7 @@
   <header class="terminal-header">
     <div class="header-content">
       <div class="logo">
-        <h1>MCP Market Data</h1>
+        <h1>AI Trading Terminal</h1>
         <p class="subtitle">HFT-grade data for AI traders</p>
       </div>
       <nav class="nav-links">
