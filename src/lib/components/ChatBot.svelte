@@ -114,6 +114,7 @@
             role: m.role,
             content: m.content,
           })),
+          userMessage,
         }),
       });
 

@@ -1,10 +1,10 @@
 <script>
     // Page metadata
-    const lastUpdated = '04/07/2025';
-    const appName = 'Decentralize Work';
+    const lastUpdated = '01/01/2026';
+    const appName = 'MCP Market Data';
     const contactEmail = 'joearchondis@gmail.com';
     const businessAddress = 'Paris, France';
-    const websiteUrl = 'www.ark-market-data.com';
+    const websiteUrl = 'www.ark-market-data.arkhamides.com';
     const notificationMethod = 'email';
 
     // Sections
@@ -82,6 +82,11 @@ Contact us at ${contactEmail} to exercise your rights.`
         }
     ];
 </script>
+
+<svelte:head>
+    <title>Privacy Policy — MCP Market Data</title>
+    <meta name="description" content="MCP Market Data privacy policy — how we collect, use, and protect your information." />
+</svelte:head>
 
 <main class="max-w-3xl mx-auto px-6 py-12 text-gray-800">
     <h1 class="text-3xl font-bold mb-2">🛡️ Privacy Policy</h1>

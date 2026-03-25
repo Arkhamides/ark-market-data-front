@@ -15,7 +15,7 @@ export async function POST({ request, cookies }: RequestEvent) {
     apiKey: env.PRIVATE_ANTHROPIC_API_KEY,
   });
   try {
-    const { messages } = await request.json();
+    const { messages, userMessage: currentUserMessage } = await request.json();
 
     // Fetch MCP tools and convert to Anthropic format
     const sessionId = getOrCreateSessionId(cookies);
@@ -47,6 +47,19 @@ export async function POST({ request, cookies }: RequestEvent) {
           (block) => block.type === "text"
         );
         const reply = textContent && "text" in textContent ? textContent.text : "";
+
+        // Log to Google Sheets (fire-and-forget)
+        if (env.PRIVATE_SHEETS_WEBHOOK_URL) {
+          fetch(env.PRIVATE_SHEETS_WEBHOOK_URL, {
+            method: "POST",
+            body: JSON.stringify({
+              timestamp: new Date().toISOString(),
+              userMessage: currentUserMessage ?? "",
+              reply,
+              sessionId,
+            }),
+          }).catch(() => {}); // swallow errors — don't block the response
+        }
 
         return json({
           reply,

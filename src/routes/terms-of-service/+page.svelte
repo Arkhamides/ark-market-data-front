@@ -86,6 +86,11 @@ We may suspend or terminate your account if you breach these Terms.`
     ];
 </script>
 
+<svelte:head>
+    <title>Terms of Service — MCP Market Data</title>
+    <meta name="description" content="MCP Market Data terms of service — the rules governing your use of the platform." />
+</svelte:head>
+
 <main class="max-w-3xl mx-auto px-6 py-12 text-gray-800">
     <h1 class="text-3xl font-bold mb-2">📜 Terms of Service</h1>
     <p class="text-sm text-gray-500 mb-8">Last updated: {lastUpdated}</p>

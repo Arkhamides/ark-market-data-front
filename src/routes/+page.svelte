@@ -42,7 +42,15 @@
 </script>
 
 <svelte:head>
-  <title>MCP Market Data | HFT-grade data for AI traders</title>
+  <title>MCP Market Data | AI-native crypto backtesting via MCP</title>
+  <meta name="description" content="Describe a crypto strategy in chat, get instant backtests on historical data and live forward tests with HFT-grade feeds. Built on MCP — works natively with Claude and any MCP-compatible AI." />
+  <meta property="og:title" content="MCP Market Data — AI-native crypto backtesting" />
+  <meta property="og:description" content="Describe a strategy, get instant backtests and live forward tests with HFT-grade feeds. Plug-and-play MCP server for algo traders and AI developers." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.ark-market-data.com" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="MCP Market Data — AI-native crypto backtesting" />
+  <meta name="twitter:description" content="Describe a strategy, get instant backtests and live forward tests with HFT-grade feeds. Plug-and-play MCP server for algo traders and AI developers." />
 </svelte:head>
 
 <div class="terminal-wrapper">
@@ -50,11 +58,11 @@
   <header class="terminal-header">
     <div class="header-content">
       <div class="logo">
-        <h1>AI Trading Terminal</h1>
-        <p class="subtitle">HFT-grade data for AI traders</p>
+        <h1>MCP Market Data</h1>
+        <p class="subtitle">AI-native crypto backtesting &amp; live validation via MCP</p>
       </div>
       <nav class="nav-links">
-        <a href="#docs">Documentation</a>
+        <a href="/docs">Documentation</a>
         <a href="https://github.com/Arkhamides/mcp-market-data" target="_blank"
           >GitHub</a
         >
@@ -131,9 +139,9 @@
         aggregation
       </p>
       <div class="footer-links">
-        <a href="#license">License</a>
-        <a href="#privacy">Privacy</a>
-        <a href="#contact">Contact</a>
+        <a href="https://github.com/Arkhamides/mcp-market-data/blob/main/LICENSE" target="_blank">License</a>
+        <a href="/privacy-policy">Privacy</a>
+        <a href="mailto:joearchondis@gmail.com">Contact</a>
       </div>
     </div>
   </footer>
