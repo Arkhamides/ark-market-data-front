@@ -5,6 +5,6 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-CGW03SW76E');
+    gtag('config', 'G-YBW0PD5L00');
   </script>
 </svelte:head>
